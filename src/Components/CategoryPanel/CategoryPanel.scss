@@ -52,9 +52,79 @@ $font-color: #4b4b4b;
       width: 50px;
       color: $font-color;
     }
+
+    .card {
+      height: 100%;
+      width: 100%;
+      overflow-y: scroll;
+      ul {
+        margin-top: 10px;
+        padding: 0;
+        li {
+          list-style: none;
+          padding: 15px;
+          border: 1.5px solid $main-color;
+          border-radius: 5px;
+          margin-bottom: 4px;
+          margin-right: 5px;
+
+          .inputGroup {
+            display: flex;
+            .inputField {
+              order: 1;
+            }
+            .inputLabel {
+              margin-left: 5px;
+              font-weight: bold;
+              color: $font-color;
+              order: 2;
+            }
+          }
+        }
+      }
+    }
   }
   .bottom {
     height: 25%;
-    display:flex
+    display: flex;
+    justify-content: space-between;
+    .prd-btns {
+      display: flex;
+      .add-prd {
+        width: 150px;
+        height: 30px;
+        border: none;
+        background-color: $main-color;
+        border-radius: 5px;
+        color: $light-color;
+        &:hover {
+          background-color: $main-hover;
+        }
+      }
+      .remove-prd {
+        width: 150px;
+        height: 30px;
+        border: none;
+        margin-left: 5px;
+        background-color: $attention-color;
+        border-radius: 5px;
+        color: $light-color;
+        &:hover {
+          background-color: $attention-hover;
+        }
+      }
+    }
+    .remove-cat {
+      width: 150px;
+      height: 30px;
+      border: none;
+      margin-left: 5px;
+      background-color: #0a3470;
+      border-radius: 5px;
+      color: $light-color;
+      &:hover {
+        background-color: #235ba8;
+      }
+    }
   }
 }
