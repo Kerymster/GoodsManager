@@ -2,7 +2,7 @@
   font-family: "Nunito", sans-serif;
 }
 .App {
-  background-color: #feefe9;
+  background-color: #e9d7d0;
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -20,7 +20,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .left {
   flex: 4;

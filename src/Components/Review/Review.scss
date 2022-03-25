@@ -40,7 +40,7 @@ $font-color: #4b4b4b;
     display: flex;
     flex-direction: column;
     height: 75%;
-    overflow-y: scroll;
+    overflow-y: auto;
     .pool-count,
     .categories {
       width: 100%;

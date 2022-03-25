@@ -1,5 +1,5 @@
 .cat-card {
-  background-color: #f8f8f8;
+  background-color: white;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
@@ -42,7 +42,7 @@
   padding-bottom: 5px;
 }
 
-.cat-card .mid {
+.cat-card .mid-sec {
   height: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -54,24 +54,24 @@
   text-align: center;
 }
 
-.cat-card .mid .plus-icon {
+.cat-card .mid-sec .plus-icon {
   height: 50px;
   width: 50px;
   color: #4b4b4b;
 }
 
-.cat-card .mid .card {
+.cat-card .mid-sec .card {
   height: 100%;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
-.cat-card .mid .card ul {
+.cat-card .mid-sec .card ul {
   margin-top: 10px;
   padding: 0;
 }
 
-.cat-card .mid .card ul li {
+.cat-card .mid-sec .card ul li {
   list-style: none;
   padding: 15px;
   border: 1.5px solid #41c4c9;
@@ -80,19 +80,19 @@
   margin-right: 5px;
 }
 
-.cat-card .mid .card ul li .inputGroup {
+.cat-card .mid-sec .card ul li .inputGroup {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.cat-card .mid .card ul li .inputGroup .inputField {
+.cat-card .mid-sec .card ul li .inputGroup .inputField {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
 }
 
-.cat-card .mid .card ul li .inputGroup .inputLabel {
+.cat-card .mid-sec .card ul li .inputGroup .inputLabel {
   margin-left: 5px;
   font-weight: bold;
   color: #4b4b4b;

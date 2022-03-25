@@ -15,7 +15,7 @@ const CategoryPanel = () => {
           <div className="title-text">Category 1</div>
         </div>
       </div>
-      <div className="mid">
+      <div className="mid-sec">
         {item ? (
           <>
             <AddCircleOutlineRoundedIcon className="plus-icon" />

@@ -33,7 +33,7 @@
 
 .pool .card {
   height: 75%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .pool .card ul {

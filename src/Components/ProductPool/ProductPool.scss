@@ -35,7 +35,7 @@ $font-color: #4b4b4b;
   }
   .card {
     height: 75%;
-    overflow-y: scroll;
+    overflow-y: auto;
     ul {
       margin-top: 10px;
       padding: 0;

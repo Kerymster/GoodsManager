@@ -10,7 +10,7 @@ $font-color: #4b4b4b;
   box-shadow: 10px 13px 20px -4px rgba(0, 0, 0, 0.38);
 }
 .cat-card {
-  background-color: $light-color;
+  background-color: white;
   box-sizing: border-box;
   width: 100%;
   height: 50%;
@@ -41,7 +41,7 @@ $font-color: #4b4b4b;
       }
     }
   }
-  .mid {
+  .mid-sec {
     height: 70%;
     display: flex;
     flex-direction: column;
@@ -56,7 +56,7 @@ $font-color: #4b4b4b;
     .card {
       height: 100%;
       width: 100%;
-      overflow-y: scroll;
+      overflow-y: auto;
       ul {
         margin-top: 10px;
         padding: 0;
