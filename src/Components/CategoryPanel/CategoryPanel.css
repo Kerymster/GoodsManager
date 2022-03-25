@@ -1,0 +1,69 @@
+.cat-card {
+  background-color: #f8f8f8;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  height: 50%;
+  padding: 15px;
+  margin: 20px;
+  margin-top: 0;
+  border-radius: 10px;
+  -webkit-box-shadow: 10px 13px 20px -4px rgba(0, 0, 0, 0.38);
+  box-shadow: 10px 13px 20px -4px rgba(0, 0, 0, 0.38);
+}
+
+.cat-card .top {
+  height: 15%;
+  margin-bottom: 0;
+}
+
+.cat-card .top .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  color: #de3869;
+}
+
+.cat-card .top .title .title-icon {
+  font-size: 40px;
+}
+
+.cat-card .top .title .title-text {
+  color: #4b4b4b;
+  font-weight: bold;
+  border-bottom: 2px solid #de3869;
+  padding-bottom: 5px;
+}
+
+.cat-card .mid {
+  height: 70%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+
+.cat-card .mid .plus-icon {
+  height: 50px;
+  width: 50px;
+  color: #4b4b4b;
+}
+
+.cat-card .bottom {
+  height: 25%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/*# sourceMappingURL=CategoryPanel.css.map */
