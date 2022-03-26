@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const getAppAsyncData = createAsyncThunk(
@@ -13,29 +13,32 @@ export const productsSlice = createSlice({
   name: "products",
   initialState: {
     products: [],
-    selectedProducs: [],
   },
   reducers: {
-    setSelected: (state, action) => {
-      state.products = {
+    toggleProduct: (state, action) => {
+      console.log(current(state.products));
+      console.log(action.payload);
+      let newList = state.products.map((item) =>
+        item.id == action.payload ? { ...item, checked: !item.checked } : item
+      );
+      return {
         ...state,
-        selectedProducts: [...state.selectedProducts, ...action.payload],
+        products: newList,
       };
     },
   },
-  extraReducers: (builder) => {
-    // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(getAppAsyncData.fulfilled, (state, action) => {
-      // Add user to the state array
-      state.products = {
+  extraReducers: {
+    [getAppAsyncData.fulfilled]: (state, action) => {
+      let newList = action.payload.map((item) =>
+        Object.assign(item, { checked: false })
+      );
+      console.log(newList);
+      return {
         ...state,
-        products: [...state.products, ...action.payload],
+        products: [...state.products, ...newList],
       };
-    });
+    },
   },
 });
 
-export const { setState } = productsSlice.actions;
-
-// store.dispatch(incremented());
-// // {value: 1}
+export const { toggleProduct } = productsSlice.actions;

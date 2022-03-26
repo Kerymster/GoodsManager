@@ -1,22 +1,31 @@
 //func imports
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAppAsyncData } from "../../Redux/slices/productsSlice";
+import {
+  getAppAsyncData,
+  toggleProduct,
+} from "../../Redux/slices/productsSlice";
 //style imports
 import "./ProductPool.css";
 import StorefrontRoundedIcon from "@material-ui/icons/StorefrontRounded";
 
 const ProductPool = () => {
-  const [checked, setChecked] = useState(false);
-  const [poolItems, setPoolItems] = useState([]);
-  const items = useSelector((state) => state.products.products);
+  // const [isChecked, setIsChecked] = useState(false);
+
+  const items = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAppAsyncData());
   }, [dispatch]);
 
-  const handleCheck = (e) => {};
+  const handleCheck = (e) => {
+    dispatch(toggleProduct(e.target.id));
+    console.log(e.target.value);
+    console.log(e.target.id);
+    // console.log(isChecked);
+    // setIsChecked(!e.target.value);
+  };
 
   return (
     <div className="pool">
@@ -35,14 +44,14 @@ const ProductPool = () => {
             items.map((item) => (
               <li key={item.id}>
                 <div className="inputGroup">
-                  <label htmlFor={item.id} className="inputLabel ">
+                  <label className="inputLabel ">
                     <img src={item.image} alt="" className="item-icon" />
                     {item.title}
                   </label>
                   <input
                     className="inputField"
                     type="checkbox"
-                    defaultChecked={checked}
+                    value={item.id}
                     onChange={handleCheck}
                     id={item.id}
                   />
