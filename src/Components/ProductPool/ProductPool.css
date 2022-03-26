@@ -33,6 +33,7 @@
 
 .pool .card {
   height: 75%;
+  overflow: hidden;
   overflow-y: auto;
 }
 
@@ -73,5 +74,14 @@
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.pool .card ul li .inputGroup .inputLabel .item-icon {
+  margin: 0px 10px;
+  height: 25px;
+  width: 25px;
 }
 /*# sourceMappingURL=ProductPool.css.map */
