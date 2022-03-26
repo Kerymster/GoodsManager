@@ -54,12 +54,16 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .pool .card ul li .inputGroup .inputField {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
+  cursor: pointer;
 }
 
 .pool .card ul li .inputGroup .inputLabel {

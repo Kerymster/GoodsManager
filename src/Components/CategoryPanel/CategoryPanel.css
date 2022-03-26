@@ -90,6 +90,7 @@
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
+  cursor: pointer;
 }
 
 .cat-card .mid-sec .card ul li .inputGroup .inputLabel {
@@ -124,6 +125,7 @@
   background-color: #41c4c9;
   border-radius: 5px;
   color: #f8f8f8;
+  cursor: pointer;
 }
 
 .cat-card .bottom .prd-btns .add-prd:hover {
@@ -138,6 +140,7 @@
   background-color: #e46389;
   border-radius: 5px;
   color: #f8f8f8;
+  cursor: pointer;
 }
 
 .cat-card .bottom .prd-btns .remove-prd:hover {
@@ -152,6 +155,7 @@
   background-color: #0a3470;
   border-radius: 5px;
   color: #f8f8f8;
+  cursor: pointer;
 }
 
 .cat-card .bottom .remove-cat:hover {

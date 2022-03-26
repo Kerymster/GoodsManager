@@ -72,6 +72,7 @@ $font-color: #4b4b4b;
             display: flex;
             .inputField {
               order: 1;
+              cursor: pointer;
             }
             .inputLabel {
               margin-left: 5px;
@@ -97,6 +98,7 @@ $font-color: #4b4b4b;
         background-color: $main-color;
         border-radius: 5px;
         color: $light-color;
+        cursor: pointer;
         &:hover {
           background-color: $main-hover;
         }
@@ -109,6 +111,7 @@ $font-color: #4b4b4b;
         background-color: $attention-color;
         border-radius: 5px;
         color: $light-color;
+        cursor: pointer;
         &:hover {
           background-color: $attention-hover;
         }
@@ -122,6 +125,7 @@ $font-color: #4b4b4b;
       background-color: #0a3470;
       border-radius: 5px;
       color: $light-color;
+      cursor: pointer;
       &:hover {
         background-color: #235ba8;
       }

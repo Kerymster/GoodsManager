@@ -49,8 +49,10 @@ $font-color: #4b4b4b;
 
         .inputGroup {
           display: flex;
+          align-items: center;
           .inputField {
             order: 1;
+            cursor: pointer;
           }
           .inputLabel {
             margin-left: 5px;
