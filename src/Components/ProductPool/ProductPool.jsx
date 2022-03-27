@@ -5,14 +5,13 @@ import {
   getAppAsyncData,
   toggleProduct,
 } from "../../Redux/slices/productsSlice";
+import SingleProduct from "../SingleProduct/SingleProduct";
 //style imports
 import "./ProductPool.css";
 import StorefrontRoundedIcon from "@material-ui/icons/StorefrontRounded";
 
 const ProductPool = () => {
-  // const [isChecked, setIsChecked] = useState(false);
-
-  const items = useSelector((state) => state.products);
+  const items = useSelector((state) => state.productsSlice.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,10 +20,6 @@ const ProductPool = () => {
 
   const handleCheck = (e) => {
     dispatch(toggleProduct(e.target.id));
-    console.log(e.target.value);
-    console.log(e.target.id);
-    // console.log(isChecked);
-    // setIsChecked(!e.target.value);
   };
 
   return (
@@ -42,21 +37,7 @@ const ProductPool = () => {
         <ul>
           {items &&
             items.map((item) => (
-              <li key={item.id}>
-                <div className="inputGroup">
-                  <label className="inputLabel ">
-                    <img src={item.image} alt="" className="item-icon" />
-                    {item.title}
-                  </label>
-                  <input
-                    className="inputField"
-                    type="checkbox"
-                    value={item.id}
-                    onChange={handleCheck}
-                    id={item.id}
-                  />
-                </div>
-              </li>
+              <SingleProduct item={item} handleCheck={handleCheck} />
             ))}
         </ul>
       </div>

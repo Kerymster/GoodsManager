@@ -5,7 +5,20 @@ export const getAppAsyncData = createAsyncThunk(
   "products/getAppAsyncData",
   async () => {
     const response = await axios.get("https://fakestoreapi.com/products");
-    return response.data;
+    const itemList = response.data.map((item) => {
+      item = {
+        id: item.id,
+        title: item.title,
+        image: item.image,
+        checked: false,
+        categorized: {
+          id: null,
+          isCategorized: false,
+        },
+      };
+      return item;
+    });
+    return itemList;
   }
 );
 
@@ -29,16 +42,13 @@ export const productsSlice = createSlice({
   },
   extraReducers: {
     [getAppAsyncData.fulfilled]: (state, action) => {
-      let newList = action.payload.map((item) =>
-        Object.assign(item, { checked: false })
-      );
-      console.log(newList);
       return {
         ...state,
-        products: [...state.products, ...newList],
+        products: [...state.products, ...action.payload],
       };
     },
   },
 });
 
 export const { toggleProduct } = productsSlice.actions;
+export default productsSlice.reducer;
