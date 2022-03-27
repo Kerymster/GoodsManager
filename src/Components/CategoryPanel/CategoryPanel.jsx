@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "./CategoryPanel.css";
 import BookOutlinedIcon from "@material-ui/icons/BookOutlined";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
 
 const CategoryPanel = () => {
-  let item = false;
+  let item = true;
+  // const poolProducts = useSelector((state) => state.productsSlice.products);
+  // console.log(poolProducts);
+  // const [item, setItem] = useState(false);
+
+  // const setCategory = () => {
+  //   poolProducts.find((prd) =>
+  //     prd.checked === true ? setItem(true) : setItem(false)
+  //   );
+  // };
+  // useEffect(() => {
+  //   setCategory();
+  // }, [poolProducts]);
+  // console.log(item);
+
+  // poolProducts.find((prd) => prd.checked);
+  // console.log(poolProducts);
+  // console.log(item);
+
   return (
     <div className="cat-card">
       <div className="top">
@@ -16,7 +35,7 @@ const CategoryPanel = () => {
         </div>
       </div>
       <div className="mid-sec">
-        {item ? (
+        {!item ? (
           <>
             <AddCircleOutlineRoundedIcon className="plus-icon" />
             <p>Select Your Goods To Manage Them!</p>

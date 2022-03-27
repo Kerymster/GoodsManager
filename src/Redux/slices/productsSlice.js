@@ -26,17 +26,30 @@ export const productsSlice = createSlice({
   name: "products",
   initialState: {
     products: [],
+    checkedList: [],
+    unCheckedList: [],
   },
   reducers: {
     toggleProduct: (state, action) => {
-      console.log(current(state.products));
-      console.log(action.payload);
       let newList = state.products.map((item) =>
         item.id == action.payload ? { ...item, checked: !item.checked } : item
       );
       return {
         ...state,
         products: newList,
+      };
+    },
+
+    checkedProducts: (state, action) => {
+      return {
+        ...state,
+        checkedList: action.payload,
+      };
+    },
+    unCheckedProducts: (state, action) => {
+      return {
+        ...state,
+        unCheckedList: action.payload,
       };
     },
   },
@@ -50,5 +63,6 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { toggleProduct } = productsSlice.actions;
+export const { toggleProduct, checkedProducts, unCheckedProducts } =
+  productsSlice.actions;
 export default productsSlice.reducer;
