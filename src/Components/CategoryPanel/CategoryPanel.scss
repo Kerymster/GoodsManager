@@ -102,6 +102,9 @@ $font-color: #4b4b4b;
         &:hover {
           background-color: $main-hover;
         }
+        &:disabled {
+          opacity: 0.3;
+        }
       }
       .remove-prd {
         width: 150px;

@@ -132,6 +132,10 @@
   background-color: #7ccbd4;
 }
 
+.cat-card .bottom .prd-btns .add-prd:disabled {
+  opacity: 0.3;
+}
+
 .cat-card .bottom .prd-btns .remove-prd {
   width: 150px;
   height: 30px;

@@ -22,8 +22,10 @@ const ProductPool = () => {
   const handleCheck = (e) => {
     dispatch(toggleProduct(e.target.id));
   };
+
   dispatch(checkedProducts(checkedList));
   dispatch(unCheckedProducts(unCheckedList));
+
   return (
     <div className="pool">
       <div className="title">

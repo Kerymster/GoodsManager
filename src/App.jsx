@@ -25,7 +25,6 @@ function App() {
         </div>
         <div className="right">
           <CategoryPanel />
-          <button className="cat-add-btn">ADD NEW CATEGORY</button>
         </div>
       </div>
     </div>
