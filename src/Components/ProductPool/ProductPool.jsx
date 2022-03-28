@@ -1,5 +1,5 @@
 //func imports
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   toggleProduct,
@@ -12,11 +12,9 @@ import "./ProductPool.css";
 import StorefrontRoundedIcon from "@material-ui/icons/StorefrontRounded";
 
 const ProductPool = () => {
-  const items = useSelector((state) => state.productsSlice.products);
-  const checkedList = items.filter((item) => item.checked === true);
-  const unCheckedList = items.filter((item) => item.checked === false);
-  // console.log(unCheckedList);
-  // console.log(checkedList);
+  const products = useSelector((state) => state.productsSlice.products);
+  const checkedList = products.filter((item) => item.checked === true);
+  const unCheckedList = products.filter((item) => item.checked === false);
   const dispatch = useDispatch();
 
   const handleCheck = (e) => {
@@ -41,8 +39,8 @@ const ProductPool = () => {
       <hr />
       <div className="card">
         <ul>
-          {items &&
-            items.map((item) => (
+          {products &&
+            products.map((item) => (
               <SingleProduct
                 key={item.id}
                 item={item}

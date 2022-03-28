@@ -129,6 +129,9 @@ $font-color: #4b4b4b;
         &:hover {
           background-color: $attention-hover;
         }
+        &:disabled {
+          opacity: 0.3;
+        }
       }
     }
     .remove-cat {

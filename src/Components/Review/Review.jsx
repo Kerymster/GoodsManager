@@ -7,6 +7,7 @@ import BookOutlinedIcon from "@material-ui/icons/BookOutlined";
 import ArrowForwardRoundedIcon from "@material-ui/icons/ArrowForwardRounded";
 const Review = () => {
   const categories = useSelector((state) => state.categorySlice.categories);
+  const products = useSelector((state) => state.productsSlice.products);
   console.log(categories.length);
   let count = 1;
   return (
@@ -23,7 +24,7 @@ const Review = () => {
       <div className="card">
         <div className="pool-count">
           <LocalMallOutlinedIcon className="pc-icon" />
-          <p className="pc-text">Available Goods :</p>
+          <p className="pc-text">Available Goods : {products.length}</p>
         </div>
         <div className="categories">
           <BookOutlinedIcon className="pc-icon" />
@@ -36,7 +37,7 @@ const Review = () => {
                 <ArrowForwardRoundedIcon className="cat-icon" />
                 <p className="cat-label">
                   {category.title} :
-                  <span className="cat-span">{count} items</span>
+                  <span className="cat-span">{category.length} items</span>
                 </p>
               </div>
             </li>

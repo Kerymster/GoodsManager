@@ -1,10 +1,9 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 export const categorySlice = createSlice({
   name: "categories",
   initialState: {
     categories: [{ id: 1, title: "Category 1" }],
-
     id: 2,
   },
   reducers: {

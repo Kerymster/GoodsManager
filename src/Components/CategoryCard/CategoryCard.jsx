@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import BookOutlinedIcon from "@material-ui/icons/BookOutlined";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
 import { useDispatch, useSelector } from "react-redux";
@@ -43,7 +42,7 @@ const CategoryCard = ({ selectedItems, title, id }) => {
               {categorizedList.map(
                 (item) =>
                   item.categorized.id == id && (
-                    <li key={id}>
+                    <li key={item.id}>
                       <div className="inputGroup">
                         <label className="inputLabel">{item.title}</label>
                         <input className="inputField" type="checkbox" />
@@ -66,7 +65,12 @@ const CategoryCard = ({ selectedItems, title, id }) => {
           >
             Add # Product(s)
           </button>
-          <button className="remove-prd">Remove Product</button>
+          <button
+            className="remove-prd"
+            disabled={checkedProducts.length > 0 ? true : false}
+          >
+            Remove Product
+          </button>
         </div>
         <div className="prd-btns">
           <button

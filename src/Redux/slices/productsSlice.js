@@ -1,5 +1,4 @@
-import { FirstPage } from "@material-ui/icons";
-import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const fakeData = [
@@ -30,6 +29,10 @@ const fakeData = [
   {
     id: 7,
     title: "Fatih",
+  },
+  {
+    id: 8,
+    title: "Last",
   },
 ];
 
@@ -99,6 +102,7 @@ export const productsSlice = createSlice({
           id: action.payload,
           isCategorized: true,
         },
+        checked: false,
       }));
       return {
         ...state,
