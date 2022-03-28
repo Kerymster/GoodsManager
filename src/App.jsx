@@ -1,6 +1,6 @@
 import { getAppAsyncData } from "./Redux/slices/productsSlice";
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 //style imports
 import Topbar from "./Components/Navigation/Topbar";
 import ProductPool from "./Components/ProductPool/ProductPool";
@@ -9,11 +9,16 @@ import CategoryPanel from "./Components/CategoryPanel/CategoryPanel";
 import "./App.css";
 
 function App() {
+  const status = useSelector((state) => state.productsSlice.status);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAppAsyncData());
   }, []);
-  return (
+
+  console.log(status);
+  return status === "loading" ? (
+    <div className="loading">loading...</div>
+  ) : status === "success" ? (
     <div className="App">
       <div className="top">
         <Topbar />
@@ -28,6 +33,8 @@ function App() {
         </div>
       </div>
     </div>
+  ) : (
+    <div>failed</div>
   );
 }
 

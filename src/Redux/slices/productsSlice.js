@@ -1,15 +1,47 @@
+import { FirstPage } from "@material-ui/icons";
 import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from "axios";
+
+const fakeData = [
+  {
+    id: 1,
+    title: "First",
+  },
+  {
+    id: 2,
+    title: "ahmet",
+  },
+  {
+    id: 3,
+    title: "mehmet",
+  },
+  {
+    id: 4,
+    title: "Hasan",
+  },
+  {
+    id: 5,
+    title: "hüseyin",
+  },
+  {
+    id: 6,
+    title: "salih",
+  },
+  {
+    id: 7,
+    title: "Fatih",
+  },
+];
 
 export const getAppAsyncData = createAsyncThunk(
   "products/getAppAsyncData",
   async () => {
-    const response = await axios.get("https://fakestoreapi.com/products");
-    const itemList = response.data.map((item) => {
+    // const response = await axios.get("https://fakestoreapi.com/products");
+    const itemList = fakeData.map((item) => {
       item = {
         id: item.id,
         title: item.title,
-        image: item.image,
+        // image: item.image,
         checked: false,
         categorized: {
           id: null,
@@ -28,6 +60,8 @@ export const productsSlice = createSlice({
     products: [],
     checkedList: [],
     unCheckedList: [],
+    categorizedList: [],
+    status: null,
   },
   reducers: {
     toggleProduct: (state, action) => {
@@ -52,17 +86,54 @@ export const productsSlice = createSlice({
         unCheckedList: action.payload,
       };
     },
+    setProductsRemainingList: (state, action) => {
+      return {
+        ...state,
+        products: state.unCheckedList,
+      };
+    },
+    setProducts: (state, action) => {
+      const newCategorized = state.checkedList.map((item) => ({
+        ...item,
+        categorized: {
+          id: action.payload,
+          isCategorized: true,
+        },
+      }));
+      return {
+        ...state,
+        categorizedList: [...state.categorizedList, ...newCategorized],
+      };
+    },
   },
   extraReducers: {
+    [getAppAsyncData.pending]: (state) => {
+      return {
+        ...state,
+        status: "loading",
+      };
+    },
     [getAppAsyncData.fulfilled]: (state, action) => {
       return {
         ...state,
         products: [...state.products, ...action.payload],
+        status: "success",
+      };
+    },
+    [getAppAsyncData.rejected]: (state) => {
+      return {
+        ...state,
+        status: "failed",
       };
     },
   },
 });
 
-export const { toggleProduct, checkedProducts, unCheckedProducts } =
-  productsSlice.actions;
+export const {
+  toggleProduct,
+  checkedProducts,
+  unCheckedProducts,
+  setProducts,
+  setProductsRemainingList,
+} = productsSlice.actions;
 export default productsSlice.reducer;

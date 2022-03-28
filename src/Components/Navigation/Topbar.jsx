@@ -14,7 +14,16 @@ const Topbar = () => {
         {" "}
         <span>Goods</span> Manager
       </h1>
-      <h3 className="title-c">Contact Us</h3>
+      <h3 className="title-c">
+        <a
+          href="https://denebunu.com/contact/"
+          target="_blank"
+          rel="noreferrer"
+          className="title-c"
+        >
+          Contact Us
+        </a>{" "}
+      </h3>
     </div>
   );
 };

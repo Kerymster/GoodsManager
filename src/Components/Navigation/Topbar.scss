@@ -37,6 +37,8 @@ $font-color: #4b4b4b;
     }
   }
   .title-c {
+    list-style-type: none;
+    text-decoration: none;
     color: $font-color;
     cursor: pointer;
   }

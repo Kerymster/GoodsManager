@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import BookOutlinedIcon from "@material-ui/icons/BookOutlined";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeCategory } from "../../Redux/slices/categorySlice";
+import { setProducts } from "../../Redux/slices/productsSlice";
+import { setProductsRemainingList } from "../../Redux/slices/productsSlice";
 const CategoryCard = ({ selectedItems, title, id }) => {
+  const checkedProducts = useSelector(
+    (state) => state.productsSlice.checkedList
+  );
+  const categorizedList = useSelector(
+    (state) => state.productsSlice.categorizedList
+  );
   const dispatch = useDispatch();
+
+  const addItem = (e) => {
+    dispatch(setProducts(e.target.id));
+    dispatch(setProductsRemainingList());
+    console.log(selectedItems);
+  };
+  console.log("categorizedList", categorizedList, id);
+
   return (
     <div className="cat-card">
       <div className="top">
@@ -16,7 +32,7 @@ const CategoryCard = ({ selectedItems, title, id }) => {
         </div>
       </div>
       <div className="mid-sec">
-        {selectedItems && selectedItems.length === 0 ? (
+        {categorizedList.length === 0 ? (
           <div className="defaultCard">
             <AddCircleOutlineRoundedIcon className="plus-icon" />
             <p>Select Your Goods To Manage Them!</p>
@@ -24,12 +40,17 @@ const CategoryCard = ({ selectedItems, title, id }) => {
         ) : (
           <div className="card">
             <ul>
-              <li>
-                <div className="inputGroup">
-                  <label className="inputLabel">Item</label>
-                  <input className="inputField" type="checkbox" />
-                </div>
-              </li>
+              {categorizedList.map(
+                (item) =>
+                  item.categorized.id == id && (
+                    <li key={id}>
+                      <div className="inputGroup">
+                        <label className="inputLabel">{item.title}</label>
+                        <input className="inputField" type="checkbox" />
+                      </div>
+                    </li>
+                  )
+              )}
             </ul>
           </div>
         )}
@@ -37,7 +58,14 @@ const CategoryCard = ({ selectedItems, title, id }) => {
 
       <div className="bottom">
         <div className="prd-btns">
-          <button className="add-prd">Add # Product(s)</button>
+          <button
+            disabled={checkedProducts.length > 0 ? false : true}
+            className="add-prd"
+            id={id}
+            onClick={addItem}
+          >
+            Add # Product(s)
+          </button>
           <button className="remove-prd">Remove Product</button>
         </div>
         <div className="prd-btns">

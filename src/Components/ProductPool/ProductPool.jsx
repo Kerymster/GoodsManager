@@ -15,16 +15,18 @@ const ProductPool = () => {
   const items = useSelector((state) => state.productsSlice.products);
   const checkedList = items.filter((item) => item.checked === true);
   const unCheckedList = items.filter((item) => item.checked === false);
-  console.log(unCheckedList);
-  console.log(checkedList);
+  // console.log(unCheckedList);
+  // console.log(checkedList);
   const dispatch = useDispatch();
 
   const handleCheck = (e) => {
     dispatch(toggleProduct(e.target.id));
   };
 
-  dispatch(checkedProducts(checkedList));
-  dispatch(unCheckedProducts(unCheckedList));
+  useEffect(() => {
+    dispatch(checkedProducts(checkedList));
+    dispatch(unCheckedProducts(unCheckedList));
+  }, [checkedList, unCheckedList]);
 
   return (
     <div className="pool">

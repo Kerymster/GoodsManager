@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import CategoryCard from "../CategoryCard/CategoryCard";
 import { addCategory } from "../../Redux/slices/categorySlice";
 import { useSelector, useDispatch } from "react-redux";

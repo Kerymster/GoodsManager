@@ -35,6 +35,8 @@
 }
 
 .bar .title-c {
+  list-style-type: none;
+  text-decoration: none;
   color: #4b4b4b;
   cursor: pointer;
 }

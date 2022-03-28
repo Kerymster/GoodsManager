@@ -121,7 +121,7 @@
 .cat-card .bottom .prd-btns .add-prd {
   width: 150px;
   height: 30px;
-  border: none;
+  border: 2px solid rgba(112, 111, 211, 0);
   background-color: #41c4c9;
   border-radius: 5px;
   color: #f8f8f8;
