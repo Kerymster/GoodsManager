@@ -2,21 +2,31 @@ import BookOutlinedIcon from "@material-ui/icons/BookOutlined";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
 import { useDispatch, useSelector } from "react-redux";
 import { removeCategory } from "../../Redux/slices/categorySlice";
+import { removeProduct } from "../../Redux/slices/productsSlice";
+import { toggleCategorizedProduct } from "../../Redux/slices/productsSlice";
 import { setProducts } from "../../Redux/slices/productsSlice";
 import { setProductsRemainingList } from "../../Redux/slices/productsSlice";
+
 const CategoryCard = ({ selectedItems, title, id }) => {
+  const dispatch = useDispatch();
   const checkedProducts = useSelector(
     (state) => state.productsSlice.checkedList
   );
   const categorizedList = useSelector(
     (state) => state.productsSlice.categorizedList
   );
-  const dispatch = useDispatch();
 
   const addItem = (e) => {
     dispatch(setProducts(e.target.id));
     dispatch(setProductsRemainingList());
     console.log(selectedItems);
+  };
+  const handleCheck = (e) => {
+    dispatch(toggleCategorizedProduct(e.target.id));
+  };
+
+  const removeItem = (e) => {
+    dispatch(removeProduct(e.target.id));
   };
   console.log("categorizedList", categorizedList, id);
 
@@ -45,7 +55,12 @@ const CategoryCard = ({ selectedItems, title, id }) => {
                     <li key={item.id}>
                       <div className="inputGroup">
                         <label className="inputLabel">{item.title}</label>
-                        <input className="inputField" type="checkbox" />
+                        <input
+                          id={item.id}
+                          className="inputField"
+                          type="checkbox"
+                          onChange={handleCheck}
+                        />
                       </div>
                     </li>
                   )
@@ -68,6 +83,7 @@ const CategoryCard = ({ selectedItems, title, id }) => {
           <button
             className="remove-prd"
             disabled={checkedProducts.length > 0 ? true : false}
+            onClick={removeItem}
           >
             Remove Product
           </button>

@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
+// Important Note!!!
+/*https://fakestoreapi.com/products endpoint may not return a healty response,if it seems busy 
+you can replace "response.data" with the "fakeData" that I've created below */
 const fakeData = [
   {
     id: 1,
@@ -39,16 +41,17 @@ const fakeData = [
 export const getAppAsyncData = createAsyncThunk(
   "products/getAppAsyncData",
   async () => {
-    // const response = await axios.get("https://fakestoreapi.com/products");
-    const itemList = fakeData.map((item) => {
+    const response = await axios.get("https://fakestoreapi.com/products");
+    const itemList = response.data.map((item) => {
       item = {
         id: item.id,
         title: item.title,
-        // image: item.image,
+        image: item.image,
         checked: false,
         categorized: {
           id: null,
           isCategorized: false,
+          isRemoved: false,
         },
       };
       return item;
@@ -76,6 +79,15 @@ export const productsSlice = createSlice({
         products: newList,
       };
     },
+    toggleCategorizedProduct: (state, action) => {
+      let newList = state.categorizedList.map((item) =>
+        item.id == action.payload ? { ...item, checked: !item.checked } : item
+      );
+      return {
+        ...state,
+        categorizedList: newList,
+      };
+    },
 
     checkedProducts: (state, action) => {
       return {
@@ -89,7 +101,7 @@ export const productsSlice = createSlice({
         unCheckedList: action.payload,
       };
     },
-    setProductsRemainingList: (state, action) => {
+    setProductsRemainingList: (state) => {
       return {
         ...state,
         products: state.unCheckedList,
@@ -101,12 +113,23 @@ export const productsSlice = createSlice({
         categorized: {
           id: action.payload,
           isCategorized: true,
+          isRemoved: false,
         },
         checked: false,
       }));
       return {
         ...state,
         categorizedList: [...state.categorizedList, ...newCategorized],
+      };
+    },
+    removeProduct: (state) => {
+      const newCategorized = state.categorizedList.filter(
+        (item) => item.checked !== true
+      );
+
+      return {
+        ...state,
+        categorizedList: newCategorized,
       };
     },
   },
@@ -139,5 +162,7 @@ export const {
   unCheckedProducts,
   setProducts,
   setProductsRemainingList,
+  removeProduct,
+  toggleCategorizedProduct,
 } = productsSlice.actions;
 export default productsSlice.reducer;

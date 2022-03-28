@@ -7,7 +7,6 @@ const CategoryPanel = () => {
   const categories = useSelector((state) => state.categorySlice.categories);
   const selectedItems = useSelector((state) => state.productsSlice.checkedList);
   const dispatch = useDispatch();
-  console.log(categories);
 
   const addNewCategory = () => {
     dispatch(addCategory());

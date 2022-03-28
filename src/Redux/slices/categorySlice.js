@@ -22,7 +22,7 @@ export const categorySlice = createSlice({
       return {
         ...state,
         categories: state.categories.filter(
-          (category) => category.id != action.payload
+          (category) => category.id.toString() !== action.payload
         ),
       };
     },

@@ -8,8 +8,11 @@ import ArrowForwardRoundedIcon from "@material-ui/icons/ArrowForwardRounded";
 const Review = () => {
   const categories = useSelector((state) => state.categorySlice.categories);
   const products = useSelector((state) => state.productsSlice.products);
-  console.log(categories.length);
-  let count = 1;
+  const categorizedList = useSelector(
+    (state) => state.productsSlice.categorizedList
+  );
+  console.log("categorizedList", categorizedList);
+
   return (
     <div className="review">
       <div className="title">
@@ -37,7 +40,7 @@ const Review = () => {
                 <ArrowForwardRoundedIcon className="cat-icon" />
                 <p className="cat-label">
                   {category.title} :
-                  <span className="cat-span">{category.length} items</span>
+                  <span className="cat-span">{category.id} items</span>
                 </p>
               </div>
             </li>
