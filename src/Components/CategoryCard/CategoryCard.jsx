@@ -3,13 +3,13 @@ import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRoun
 import { useDispatch, useSelector } from "react-redux";
 import { removeCategory } from "../../Redux/slices/categorySlice";
 import { removeProduct } from "../../Redux/slices/productsSlice";
+import { removeAllProducts } from "../../Redux/slices/productsSlice";
 import { toggleCategorizedProduct } from "../../Redux/slices/productsSlice";
 import { setProducts } from "../../Redux/slices/productsSlice";
 import { setProductsRemainingList } from "../../Redux/slices/productsSlice";
 
 const CategoryCard = ({ title, id }) => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.productsSlice.products);
 
   const checkedProducts = useSelector(
     (state) => state.productsSlice.checkedList
@@ -29,7 +29,11 @@ const CategoryCard = ({ title, id }) => {
   const removeItem = (e) => {
     dispatch(removeProduct(e.target.id));
   };
-  console.log("categorizedList", categorizedList, id);
+
+  const handleRemoveCategory = (e) => {
+    dispatch(removeCategory(e.target.id));
+    dispatch(removeAllProducts(e.target.id));
+  };
 
   return (
     <div className="cat-card">
@@ -52,7 +56,7 @@ const CategoryCard = ({ title, id }) => {
             <ul>
               {categorizedList.map(
                 (item) =>
-                  item.categorized.id == id && (
+                  +item.categorized.id === id && (
                     <li key={item.id}>
                       <div className="inputGroup">
                         <label className="inputLabel">{item.title}</label>
@@ -90,11 +94,7 @@ const CategoryCard = ({ title, id }) => {
           </button>
         </div>
         <div className="prd-btns">
-          <button
-            className="remove-cat"
-            id={id}
-            onClick={(e) => dispatch(removeCategory(e.target.id))}
-          >
+          <button className="remove-cat" id={id} onClick={handleRemoveCategory}>
             Remove Category
           </button>
         </div>

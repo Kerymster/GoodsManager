@@ -71,7 +71,7 @@ export const productsSlice = createSlice({
   reducers: {
     toggleProduct: (state, action) => {
       let newList = state.products.map((item) =>
-        item.id == action.payload ? { ...item, checked: !item.checked } : item
+        item.id === +action.payload ? { ...item, checked: !item.checked } : item
       );
       return {
         ...state,
@@ -80,7 +80,7 @@ export const productsSlice = createSlice({
     },
     toggleCategorizedProduct: (state, action) => {
       let newList = state.categorizedList.map((item) =>
-        item.id == action.payload
+        item.id === +action.payload
           ? {
               ...item,
               checked: false,
@@ -116,12 +116,7 @@ export const productsSlice = createSlice({
         products: state.unCheckedList,
       };
     },
-    setProductsAfterRemove: (state) => {
-      return {
-        ...state,
-        products: state.unCheckedList,
-      };
-    },
+
     setProducts: (state, action) => {
       const newList = state.checkedList.map((item) => ({
         ...item,
@@ -147,7 +142,20 @@ export const productsSlice = createSlice({
       return {
         ...state,
         categorizedList: newList,
-        products: [...state.unCheckedList, ...removedItemsList],
+        products: [...state.unCheckedList, ...removedItemsList].sort(
+          (a, b) => a.id - b.id
+        ),
+      };
+    },
+    removeAllProducts: (state, action) => {
+      const removedItemsList = state.categorizedList.filter(
+        (item) => item.categorized.id === action.payload
+      );
+      return {
+        ...state,
+        products: [...state.unCheckedList, ...removedItemsList].sort(
+          (a, b) => a.id - b.id
+        ),
       };
     },
   },
@@ -182,5 +190,6 @@ export const {
   setProductsRemainingList,
   removeProduct,
   toggleCategorizedProduct,
+  removeAllProducts,
 } = productsSlice.actions;
 export default productsSlice.reducer;

@@ -11,7 +11,29 @@ const Review = () => {
   const categorizedList = useSelector(
     (state) => state.productsSlice.categorizedList
   );
-  console.log("categorizedList", categorizedList);
+
+  const categoryItemCount = (id) => {
+    const filteredCategorizedList = categorizedList.filter(
+      (item) => +item?.categorized.id === id
+    );
+    return (
+      <>
+        {filteredCategorizedList.length > 0 ? (
+          <>
+            <span>Category {id} : </span>
+            <span className="cat-span">
+              {filteredCategorizedList.length} items
+            </span>
+          </>
+        ) : (
+          <>
+            <span>Category {id} : </span>
+            <span>No product</span>
+          </>
+        )}
+      </>
+    );
+  };
 
   return (
     <div className="review">
@@ -39,8 +61,14 @@ const Review = () => {
               <div className="category">
                 <ArrowForwardRoundedIcon className="cat-icon" />
                 <p className="cat-label">
-                  {category.title} :
-                  <span className="cat-span">{category.id} items</span>
+                  {categorizedList.length > 0 ? (
+                    categoryItemCount(category.id)
+                  ) : (
+                    <>
+                      <span>Category {category.id}: </span>
+                      <span>No product</span>
+                    </>
+                  )}
                 </p>
               </div>
             </li>

@@ -18,7 +18,6 @@ export const categorySlice = createSlice({
       };
     },
     removeCategory: (state, action) => {
-      console.log(action.payload);
       return {
         ...state,
         categories: state.categories.filter(
