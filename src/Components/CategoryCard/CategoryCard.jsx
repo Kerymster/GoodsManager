@@ -7,8 +7,10 @@ import { toggleCategorizedProduct } from "../../Redux/slices/productsSlice";
 import { setProducts } from "../../Redux/slices/productsSlice";
 import { setProductsRemainingList } from "../../Redux/slices/productsSlice";
 
-const CategoryCard = ({ selectedItems, title, id }) => {
+const CategoryCard = ({ title, id }) => {
   const dispatch = useDispatch();
+  const products = useSelector((state) => state.productsSlice.products);
+
   const checkedProducts = useSelector(
     (state) => state.productsSlice.checkedList
   );
@@ -19,7 +21,6 @@ const CategoryCard = ({ selectedItems, title, id }) => {
   const addItem = (e) => {
     dispatch(setProducts(e.target.id));
     dispatch(setProductsRemainingList());
-    console.log(selectedItems);
   };
   const handleCheck = (e) => {
     dispatch(toggleCategorizedProduct(e.target.id));

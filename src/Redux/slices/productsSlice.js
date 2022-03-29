@@ -41,8 +41,8 @@ const fakeData = [
 export const getAppAsyncData = createAsyncThunk(
   "products/getAppAsyncData",
   async () => {
-    const response = await axios.get("https://fakestoreapi.com/products");
-    const itemList = response.data.map((item) => {
+    // const response = await axios.get("https://fakestoreapi.com/products");
+    const itemList = fakeData.map((item) => {
       item = {
         id: item.id,
         title: item.title,
@@ -51,7 +51,6 @@ export const getAppAsyncData = createAsyncThunk(
         categorized: {
           id: null,
           isCategorized: false,
-          isRemoved: false,
         },
       };
       return item;
@@ -81,7 +80,17 @@ export const productsSlice = createSlice({
     },
     toggleCategorizedProduct: (state, action) => {
       let newList = state.categorizedList.map((item) =>
-        item.id == action.payload ? { ...item, checked: !item.checked } : item
+        item.id == action.payload
+          ? {
+              ...item,
+              checked: false,
+              categorized: {
+                ...item.categorized,
+
+                isCategorized: !item.categorized.isCategorized,
+              },
+            }
+          : item
       );
       return {
         ...state,
@@ -101,35 +110,44 @@ export const productsSlice = createSlice({
         unCheckedList: action.payload,
       };
     },
-    setProductsRemainingList: (state) => {
+    setProductsRemainingList: (state, action) => {
+      return {
+        ...state,
+        products: state.unCheckedList,
+      };
+    },
+    setProductsAfterRemove: (state) => {
       return {
         ...state,
         products: state.unCheckedList,
       };
     },
     setProducts: (state, action) => {
-      const newCategorized = state.checkedList.map((item) => ({
+      const newList = state.checkedList.map((item) => ({
         ...item,
         categorized: {
           id: action.payload,
           isCategorized: true,
-          isRemoved: false,
         },
         checked: false,
       }));
       return {
         ...state,
-        categorizedList: [...state.categorizedList, ...newCategorized],
+        categorizedList: [...state.categorizedList, ...newList],
       };
     },
     removeProduct: (state) => {
-      const newCategorized = state.categorizedList.filter(
-        (item) => item.checked !== true
+      const newList = state.categorizedList.filter(
+        (item) => item.categorized.isCategorized === true
+      );
+      const removedItemsList = state.categorizedList.filter(
+        (item) => item.categorized.isCategorized === false
       );
 
       return {
         ...state,
-        categorizedList: newCategorized,
+        categorizedList: newList,
+        products: [...state.unCheckedList, ...removedItemsList],
       };
     },
   },

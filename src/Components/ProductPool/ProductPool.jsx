@@ -1,4 +1,3 @@
-//func imports
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -7,7 +6,6 @@ import {
   unCheckedProducts,
 } from "../../Redux/slices/productsSlice";
 import SingleProduct from "../SingleProduct/SingleProduct";
-//style imports
 import "./ProductPool.css";
 import StorefrontRoundedIcon from "@material-ui/icons/StorefrontRounded";
 
