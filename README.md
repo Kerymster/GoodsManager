@@ -1,5 +1,10 @@
 # Goods Manager Application
-
+In this application, 
+-ReactJS
+-Redux 
+-ReduxThunk 
+-Saas
+-Rest API features are used.
 
 ## Application Screen GIF
 
