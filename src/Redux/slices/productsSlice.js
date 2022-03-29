@@ -64,7 +64,7 @@ export const productsSlice = createSlice({
   initialState: {
     products: [],
     checkedList: [],
-    unCheckedList: [],
+    unCategorizedList: [],
     categorizedList: [],
     status: null,
   },
@@ -104,16 +104,16 @@ export const productsSlice = createSlice({
         checkedList: action.payload,
       };
     },
-    unCheckedProducts: (state, action) => {
+    unCategorizedProducts: (state, action) => {
       return {
         ...state,
-        unCheckedList: action.payload,
+        unCategorizedList: action.payload,
       };
     },
     setProductsRemainingList: (state, action) => {
       return {
         ...state,
-        products: state.unCheckedList,
+        products: state.unCategorizedList,
       };
     },
 
@@ -142,7 +142,7 @@ export const productsSlice = createSlice({
       return {
         ...state,
         categorizedList: newList,
-        products: [...state.unCheckedList, ...removedItemsList].sort(
+        products: [...state.unCategorizedList, ...removedItemsList].sort(
           (a, b) => a.id - b.id
         ),
       };
@@ -153,7 +153,7 @@ export const productsSlice = createSlice({
       );
       return {
         ...state,
-        products: [...state.unCheckedList, ...removedItemsList].sort(
+        products: [...state.unCategorizedList, ...removedItemsList].sort(
           (a, b) => a.id - b.id
         ),
       };
@@ -185,7 +185,7 @@ export const productsSlice = createSlice({
 export const {
   toggleProduct,
   checkedProducts,
-  unCheckedProducts,
+  unCategorizedProducts,
   setProducts,
   setProductsRemainingList,
   removeProduct,

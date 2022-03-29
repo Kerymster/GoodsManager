@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   toggleProduct,
   checkedProducts,
-  unCheckedProducts,
+  unCategorizedProducts,
 } from "../../Redux/slices/productsSlice";
 import SingleProduct from "../SingleProduct/SingleProduct";
 import "./ProductPool.css";
@@ -12,7 +12,7 @@ import StorefrontRoundedIcon from "@material-ui/icons/StorefrontRounded";
 const ProductPool = () => {
   const products = useSelector((state) => state.productsSlice.products);
   const checkedList = products.filter((item) => item.checked === true);
-  const unCheckedList = products.filter((item) => item.checked === false);
+  const unCategorizedList = products.filter((item) => item.checked === false);
   const dispatch = useDispatch();
 
   const handleCheck = (e) => {
@@ -21,8 +21,8 @@ const ProductPool = () => {
 
   useEffect(() => {
     dispatch(checkedProducts(checkedList));
-    dispatch(unCheckedProducts(unCheckedList));
-  }, [checkedList, unCheckedList]);
+    dispatch(unCategorizedProducts(unCategorizedList));
+  }, [checkedList, unCategorizedList]);
 
   return (
     <div className="pool">
