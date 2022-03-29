@@ -6,35 +6,35 @@ you can replace "response.data" with the "fakeData" that I've created below */
 const fakeData = [
   {
     id: 1,
-    title: "First",
+    title: "Book",
   },
   {
     id: 2,
-    title: "ahmet",
+    title: "Cellphone",
   },
   {
     id: 3,
-    title: "mehmet",
+    title: "T-Shirt",
   },
   {
     id: 4,
-    title: "Hasan",
+    title: "Pencil",
   },
   {
     id: 5,
-    title: "hüseyin",
+    title: "Television",
   },
   {
     id: 6,
-    title: "salih",
+    title: "Apple",
   },
   {
     id: 7,
-    title: "Fatih",
+    title: "Pants",
   },
   {
     id: 8,
-    title: "Last",
+    title: "Watermelon",
   },
 ];
 
@@ -42,6 +42,7 @@ export const getAppAsyncData = createAsyncThunk(
   "products/getAppAsyncData",
   async () => {
     // const response = await axios.get("https://fakestoreapi.com/products");
+    // const itemList = response.data.map((item) => {
     const itemList = fakeData.map((item) => {
       item = {
         id: item.id,
