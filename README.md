@@ -3,7 +3,7 @@ In this application,
 -ReactJS
 -Redux 
 -ReduxThunk 
--Saas
+-Sass
 -Rest API features are used.
 
 ## Application Screen GIF (API)
